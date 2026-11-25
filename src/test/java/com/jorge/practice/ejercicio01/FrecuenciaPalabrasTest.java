@@ -36,4 +36,20 @@ public class FrecuenciaPalabrasTest {
         Map<String, Integer> resultado = FrecuenciaPalabras.contar("La canción del niño, la canción");
         assertEquals(Map.of("la", 2, "canción", 2, "del", 1, "niño", 1), resultado);
     }
+
+    @Test
+    void cuentaPalabrasSinImportarSignos() {
+        Map<String, Integer> resultado = FrecuenciaPalabras.contar("!Hola mundo, el mundo te da la bienvenida?.");
+        assertEquals(Map.of("hola", 1, "mundo", 2, "el", 1, "te", 1, "da", 1, "la", 1, "bienvenida", 1), resultado);
+    }
+
+    @Test
+    void textoSoloSignosDevuelveMapaVacio() {
+        assertTrue(FrecuenciaPalabras.contar("????!!!!!..... ??.. [[[[]]]]").isEmpty());
+    }
+
+    @Test
+    void textoVacioDevuelveMapaVacio() {
+        assertTrue(FrecuenciaPalabras.contar("").isEmpty());
+    }
 }
